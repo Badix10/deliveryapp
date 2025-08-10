@@ -1,13 +1,13 @@
 import * as ImagePicker from 'expo-image-picker'
 import { useEffect, useState } from 'react'
 import {
-    ActivityIndicator,
-    Alert,
-    Image,
-    Pressable,
-    Text,
-    TouchableOpacity,
-    View
+  ActivityIndicator,
+  Alert,
+  Image,
+  Pressable,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native'
 import { supabase } from '../lib/supabase'
 
@@ -266,7 +266,7 @@ export default function Avatar({ url, size = 150, onUpload }: Props) {
 
         {/* Texte d'aide */}
         <Text className="text-xs text-gray-500 text-center mt-2">
-          Touchez l'image ou le bouton pour modifier
+          {"Touchez l'image ou le bouton pour modifier"}
         </Text>
       </View>
     </View>

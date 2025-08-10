@@ -1,4 +1,4 @@
-import LoadingScreen from '@/components/LoadingScreen';
+import LoadingScreen from '@/components/common/LoadingScreen';
 import '@/global.css';
 import { Session } from '@supabase/supabase-js';
 import { useFonts } from 'expo-font';

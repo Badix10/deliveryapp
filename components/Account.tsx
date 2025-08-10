@@ -179,7 +179,7 @@ export default function Account({ session }: { session: Session }) {
                         {/* Champ Username */}
                         <View className="mb-4">
                             <Text className="text-sm font-medium text-gray-700 mb-2">
-                                Nom d'utilisateur
+                                {"Nom d'utilisateur"}
                             </Text>
                             <View className={`flex-row items-center border rounded-lg px-4 py-3 ${usernameFocused ? 'border-blue-500 bg-white' : 'border-gray-200 bg-white'
                                 }`}>
