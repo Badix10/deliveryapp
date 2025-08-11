@@ -198,12 +198,13 @@ import CustomTabBar from '../../components/navigation/CustomTabBar';
 
 export default function TabsLayout() {
   return (
-    <SafeAreaView className="flex-1 bg-transparent">
+    <SafeAreaView className="flex-1 ">
+
       {/* Contenu de la page active */}
       <View className="flex-1">
         <Slot />
       </View>
-      
+
       {/* Custom TabBar */}
       <CustomTabBar />
     </SafeAreaView>
