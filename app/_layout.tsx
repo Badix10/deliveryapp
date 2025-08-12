@@ -1,7 +1,7 @@
 import LoadingScreen from '@/components/common/LoadingScreen';
 import '@/global.css';
+import { useFontsLoading } from '@/hooks/useFontsLoading';
 import { Session } from '@supabase/supabase-js';
-import { useFonts } from 'expo-font';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -18,13 +18,8 @@ export default function RootLayout() {
   const segments = useSegments();
   const router = useRouter();
 
-  // Chargement des fonts
-  const [fontsLoaded, fontError] = useFonts({
-    'Lufga': require('../assets/fonts/lufga/LufgaRegular.ttf'),
-    'Lufga-Medium': require('../assets/fonts/lufga/LufgaMedium.ttf'),
-    'Lufga-SemiBold': require('../assets/fonts/lufga/LufgaSemiBold.ttf'),
-    'Lufga-Bold': require('../assets/fonts/lufga/LufgaBold.ttf'),
-  });
+  // Utiliser le hook unifié pour les fonts
+  const { isReady: fontsReady } = useFontsLoading();
 
   // Gestion de la session Supabase
   useEffect(() => {
@@ -40,21 +35,9 @@ export default function RootLayout() {
     return () => subscription.unsubscribe();
   }, []);
 
-  // Gestion des erreurs de fonts
-  useEffect(() => {
-    if (fontError) throw fontError;
-  }, [fontError]);
-
-  // Cache le splash screen quand tout est prêt
-  useEffect(() => {
-    if (fontsLoaded && !loading) {
-      SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, loading]);
-
   // Navigation basée sur l'authentification
   useEffect(() => {
-    if (loading || !fontsLoaded) return;
+    if (loading || !fontsReady) return;
 
     const inAuthGroup = segments[0] === '(auth)';
 
@@ -63,10 +46,10 @@ export default function RootLayout() {
     } else if (session && inAuthGroup) {
       router.replace('/(tabs)');
     }
-  }, [session, segments, loading, fontsLoaded]);
+  }, [session, segments, loading, fontsReady]);
 
-  // Utilisation du composant LoadingScreen
-  if (!fontsLoaded || loading) {
+  // Afficher loading si fonts ou auth pas prêts
+  if (!fontsReady || loading) {
     return <LoadingScreen />;
   }
 

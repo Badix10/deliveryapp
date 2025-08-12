@@ -1,3 +1,4 @@
+import { useAsyncState, useForm, useLocalStorage, useToggle } from '@/hooks'
 import { Session } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
 import {
@@ -15,46 +16,86 @@ import { supabase } from '../lib/supabase'
 import Avatar from './Avatar'
 
 export default function Account({ session }: { session: Session }) {
-    const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
-    const [username, setUsername] = useState('')
-    const [website, setWebsite] = useState('')
     const [avatarUrl, setAvatarUrl] = useState('')
-    const [usernameFocused, setUsernameFocused] = useState(false)
-    const [websiteFocused, setWebsiteFocused] = useState(false)
+    const [usernameFocused, toggleUsernameFocus, setUsernameFocused] = useToggle(false)
+    const [websiteFocused, toggleWebsiteFocus, setWebsiteFocused] = useToggle(false)
 
+    // Préférences utilisateur persistantes
+    const [userPreferences, setUserPreferences] = useLocalStorage('user_preferences', {
+        theme: 'light',
+        language: 'fr',
+        notifications: true,
+        autoSave: true
+    })
+
+    // Formulaire pour username et website avec useForm
+    const profileForm = useForm({
+        initialValues: {
+            username: '',
+            website: ''
+        },
+        validate: (values) => {
+            const errors: any = {}
+            if (values.username && values.username.length < 2) {
+                errors.username = 'Le nom d\'utilisateur doit contenir au moins 2 caractères'
+            }
+            if (values.website && !values.website.startsWith('http')) {
+                errors.website = 'Le site web doit commencer par http:// ou https://'
+            }
+            return errors
+        },
+        onSubmit: async (values) => {
+            await updateProfile({
+                username: values.username,
+                website: values.website,
+                avatar_url: avatarUrl
+            })
+        }
+    })
+
+    // Fonction pour charger le profil
+    const fetchProfile = async () => {
+        if (!session?.user) throw new Error('No user on the session!')
+
+        const { data, error, status } = await supabase
+            .from('profiles')
+            .select(`username, website, avatar_url`)
+            .eq('id', session?.user.id)
+            .single()
+
+        if (error && status !== 406) {
+            throw error
+        }
+
+        return data
+    }
+
+    // Utiliser useAsyncState pour gérer le chargement
+    const { data: profileData, loading, error, execute: loadProfile } = useAsyncState(fetchProfile)
+
+    // Mettre à jour les states locaux quand les données changent
     useEffect(() => {
-        if (session) getProfile()
+        if (profileData) {
+            profileForm.setFieldValue('username', profileData.username || '')
+            profileForm.setFieldValue('website', profileData.website || '')
+            setAvatarUrl(profileData.avatar_url || '')
+        }
+    }, [profileData])
+
+    // Charger le profil quand la session change
+    useEffect(() => {
+        if (session) {
+            loadProfile()
+        }
     }, [session])
 
-    async function getProfile() {
-        try {
-            setLoading(true)
-            if (!session?.user) throw new Error('No user on the session!')
-
-            const { data, error, status } = await supabase
-                .from('profiles')
-                .select(`username, website, avatar_url`)
-                .eq('id', session?.user.id)
-                .single()
-
-            if (error && status !== 406) {
-                throw error
-            }
-
-            if (data) {
-                setUsername(data.username || '')
-                setWebsite(data.website || '')
-                setAvatarUrl(data.avatar_url || '')
-            }
-        } catch (error) {
-            if (error instanceof Error) {
-                Alert.alert('Erreur', error.message)
-            }
-        } finally {
-            setLoading(false)
+    // Afficher les erreurs
+    useEffect(() => {
+        if (error) {
+            Alert.alert('Erreur', error)
         }
-    }
+    }, [error])
 
     async function updateProfile({
         username,
@@ -188,8 +229,8 @@ export default function Account({ session }: { session: Session }) {
                                     className="flex-1 text-base text-gray-900"
                                     placeholder="Entrez votre nom d'utilisateur"
                                     placeholderTextColor="#9CA3AF"
-                                    value={username}
-                                    onChangeText={setUsername}
+                                    value={profileForm.values.username}
+                                    onChangeText={(value) => profileForm.setFieldValue('username', value)}
                                     autoCapitalize="none"
                                     onFocus={() => setUsernameFocused(true)}
                                     onBlur={() => setUsernameFocused(false)}
@@ -210,8 +251,8 @@ export default function Account({ session }: { session: Session }) {
                                     className="flex-1 text-base text-gray-900"
                                     placeholder="https://votresite.com"
                                     placeholderTextColor="#9CA3AF"
-                                    value={website}
-                                    onChangeText={setWebsite}
+                                    value={profileForm.values.website}
+                                    onChangeText={(value) => profileForm.setFieldValue('website', value)}
                                     autoCapitalize="none"
                                     keyboardType="url"
                                     autoComplete="url"

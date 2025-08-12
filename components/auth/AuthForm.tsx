@@ -3,6 +3,7 @@ import PasswordInput from '@/components/auth/PasswordInput'
 import RememberMeSection from '@/components/auth/RememberMeSection'
 import SocialAuthButtons from '@/components/auth/SocialAuthButton'
 import TermsSection from '@/components/auth/TermsSection'
+import { useToggle } from '@/hooks'
 import { useUIStore } from '@/stores/uiStore'
 import React from 'react'
 import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
@@ -23,7 +24,9 @@ export default function AuthForm({
   isLoading,
   onSubmit
 }: AuthFormProps) {
-  const { formErrors, showPassword, showConfirmPassword, setShowPassword, setShowConfirmPassword } = useUIStore()
+  const { formErrors } = useUIStore()
+  const [showPassword, toggleShowPassword] = useToggle(false)
+  const [showConfirmPassword, toggleShowConfirmPassword] = useToggle(false)
 
   return (
     <>
@@ -66,7 +69,7 @@ export default function AuthForm({
           if (formState.password) validation.validatePassword(formState.password)
         }}
         showPassword={showPassword}
-        onTogglePassword={() => setShowPassword(!showPassword)}
+        onTogglePassword={toggleShowPassword}
         editable={!isLoading}
       />
 
@@ -90,7 +93,7 @@ export default function AuthForm({
             }
           }}
           showPassword={showConfirmPassword}
-          onTogglePassword={() => setShowConfirmPassword(!showConfirmPassword)}
+          onTogglePassword={toggleShowConfirmPassword}
           editable={!isLoading}
         />
       )}
