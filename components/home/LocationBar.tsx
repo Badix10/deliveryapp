@@ -23,13 +23,13 @@ export default function LocationBar() {
   };
 
   return (
-    <View className="flex-row items-center justify-between px-4 py-3">
+    <View className="flex-row items-center justify-between px-4 py-2">
       {/* Location Button */}
       <Pressable 
         onPress={handleLocationPress}
         className="flex-row items-center flex-1"
       >
-        <View className="w-10 h-10 rounded-full bg-neutral-800 items-center justify-center mr-3">
+        <View className="w-11 h-11 rounded-full bg-neutral-800 items-center justify-center mr-3">
           <Ionicons name="location-sharp" size={20} color="#FFFFFF" />
         </View>
         
@@ -46,13 +46,14 @@ export default function LocationBar() {
       </Pressable>
 
       {/* Action Buttons */}
-      <View className="flex-row items-center ml-4">
+      <View className="flex-row items-center ml-2">
         {/* Cart Button */}
         <Pressable 
           onPress={handleCartPress}
-          className="relative mr-3"
+          className="relative mr-2 p-1"
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         >
-          <View className="w-10 h-10 rounded-full bg-neutral-800 items-center justify-center">
+          <View className="w-11 h-11 rounded-full bg-neutral-800 items-center justify-center">
             <Ionicons name="cart-outline" size={22} color="#FFFFFF" />
           </View>
           
@@ -68,9 +69,10 @@ export default function LocationBar() {
         {/* Wallet Button */}
         <Pressable 
           onPress={handleWalletPress}
-          className="relative"
+          className="relative p-1"
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         >
-          <View className="w-10 h-10 rounded-full bg-neutral-800 items-center justify-center">
+          <View className="w-11 h-11 rounded-full bg-neutral-800 items-center justify-center">
             <MaterialCommunityIcons name="wallet-outline" size={20} color="#FFFFFF" />
           </View>
           

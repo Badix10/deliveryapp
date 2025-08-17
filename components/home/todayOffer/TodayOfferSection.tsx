@@ -17,11 +17,11 @@ export default function TodaysOfferSection() {
   const featuredOffer = mockOffers[0];
 
   return (
-    <View className="py-4">
+    <View className="py-6">
       {/* Section Header */}
-      <View className="flex-row items-center justify-between px-4 mb-4">
+      <View className="flex-row items-center justify-between mb-6">
         <Text className="text-title-md font-lufga-bold text-neutral-900">
-          Today's Offer!
+          Today&apos;s Offer!
         </Text>
         
         <Pressable onPress={handleSeeAll}>

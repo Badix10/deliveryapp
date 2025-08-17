@@ -56,13 +56,13 @@ export default function OfferCard({
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       style={animatedStyle}
-      className="mx-4"
+      className="mx-0"
     >
       <LinearGradient
         colors={['#FEF3E2', '#FDE9D1']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        className="rounded-2xl p-5 overflow-hidden"
+        className="rounded-2xl p-4 overflow-hidden"
         style={{
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 4 },
@@ -82,12 +82,12 @@ export default function OfferCard({
             </View>
 
             {/* Title */}
-            <Text className="text-heading-sm font-lufga-bold text-neutral-900 mt-3 mb-2">
+            <Text className="text-title-md font-lufga-bold text-neutral-900 mt-2 mb-2">
               {title}
             </Text>
 
             {/* Description */}
-            <Text className="text-body-sm font-lufga text-neutral-600 mb-4 leading-5">
+            <Text className="text-body-sm font-lufga text-neutral-600 mb-3 leading-5">
               {description}
             </Text>
 
@@ -103,7 +103,7 @@ export default function OfferCard({
             {/* CTA Button */}
             <Pressable
               onPress={handlePress}
-              className="bg-neutral-900 self-start px-5 py-3 rounded-button"
+              className="bg-neutral-900 self-start px-4 py-2.5 rounded-button"
               style={{
                 shadowColor: '#000',
                 shadowOffset: { width: 0, height: 2 },

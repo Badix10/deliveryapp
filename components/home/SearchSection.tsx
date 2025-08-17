@@ -52,16 +52,16 @@ export default function SearchSection({ onFilterPress }: SearchSectionProps) {
   };
 
   return (
-    <View className="px-4 pb-6">
-      <View className="flex-row items-center bg-neutral-800 rounded-full">
+    <View className="px-4 pb-4">
+      <View className="flex-row items-center bg-neutral-100 rounded-full">
         <View className="flex-1 flex-row items-center px-4 py-3">
-          <Ionicons name="search" size={20} color="#9CA3AF" />
+          <Ionicons name="search" size={20} color="#6B7280" />
           <TextInput
             value={query}
             onChangeText={setQuery}
             placeholder="Search restaurants, food..."
-            placeholderTextColor="#9CA3AF"
-            className="flex-1 ml-3 text-body-sm text-white font-lufga"
+            placeholderTextColor="#6B7280"
+            className="flex-1 ml-3 text-body-sm text-neutral-900 font-lufga"
             returnKeyType="search"
             onSubmitEditing={handleSearch}
           />
@@ -70,7 +70,7 @@ export default function SearchSection({ onFilterPress }: SearchSectionProps) {
         {/* Filter Button */}
         <Pressable
           onPress={onFilterPress}
-          className="bg-secondary  flex-row items-center px-4 py-3 rounded-full mr-1.5"
+          className="bg-secondary-500 flex-row items-center px-4 py-3 rounded-full mr-1.5"
         >
           <Text className="text-neutral-900 font-lufga-medium text-body-sm mr-2">
             Filter

@@ -116,7 +116,7 @@ export default function RestaurantCard({
         {/* Favorite Button */}
         <Pressable 
           onPress={handleFavoritePress}
-          className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full items-center justify-center shadow-sm"
+          className="absolute top-3 right-3 w-11 h-11 bg-white rounded-full items-center justify-center shadow-sm"
         >
           <Animated.View style={animatedHeartStyle}>
             <Ionicons 

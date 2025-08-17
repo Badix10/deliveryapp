@@ -17,40 +17,40 @@ export default function HomeScreen() {
   };
 
   return (
-    <View className="flex-1 bg-background">
-      <StatusBar style="light" />
+    <View className="flex-1">
+      <StatusBar style="dark" />
 
-      {/* Header avec fond noir */}
-      <HomeHeader onFiltersApply={handleFiltersApply} />
-
-      {/* Contenu principal */}
+      {/* Contenu principal avec header inclus */}
       <ScrollView
-        className="flex-1"
+        className="flex-1 mb-3"
         showsVerticalScrollIndicator={false}
       >
-        <View className="p-4">
+        {/* Header avec fond noir */}
+        <HomeHeader onFiltersApply={handleFiltersApply} />
+        
+        <View className="px-4 py-6">
           {/* Debug - Afficher les filtres actifs */}
           {activeFilters && (
-            <View className="mb-4 p-3 bg-primary-50 rounded-lg">
-              <Text className="text-body-sm font-lufga-medium text-primary-800">
-                Filtres actifs:
+            <View className="mb-6 p-4 bg-primary-50 rounded-xl border border-primary-100">
+              <Text className="text-body-sm font-lufga-semibold text-primary-800 mb-2">
+                🔍 Filtres actifs
               </Text>
               {activeFilters.categories.length > 0 && (
-                <Text className="text-caption text-primary-700 font-lufga mt-1">
-                  Catégories: {activeFilters.categories.join(', ')}
+                <Text className="text-caption text-primary-700 font-lufga mb-1">
+                  📂 Catégories: {activeFilters.categories.join(', ')}
                 </Text>
               )}
               {activeFilters.freeDelivery && (
-                <Text className="text-caption text-primary-700 font-lufga mt-1">
-                  Livraison gratuite uniquement
+                <Text className="text-caption text-primary-700 font-lufga mb-1">
+                  🚚 Livraison gratuite uniquement
                 </Text>
               )}
-              <Text className="text-caption text-primary-700 font-lufga mt-1">
-                Distance max: {activeFilters.distance} km
+              <Text className="text-caption text-primary-700 font-lufga mb-1">
+                📍 Distance max: {activeFilters.distance} km
               </Text>
               {activeFilters.rating > 0 && (
-                <Text className="text-caption text-primary-700 font-lufga mt-1">
-                  Note min: {activeFilters.rating} ⭐
+                <Text className="text-caption text-primary-700 font-lufga">
+                  ⭐ Note min: {activeFilters.rating}
                 </Text>
               )}
             </View>

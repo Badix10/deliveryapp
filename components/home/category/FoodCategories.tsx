@@ -64,7 +64,7 @@ export default function FoodCategories() {
   }
 
   return (
-    <View className="py-4">
+    <View className="py-6">
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}

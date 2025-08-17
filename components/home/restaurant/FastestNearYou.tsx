@@ -43,9 +43,9 @@ export default function FastestNearYou() {
   };
 
   return (
-    <View className="py-4">
+    <View className="py-6">
       {/* Section Header */}
-      <View className="flex-row items-center justify-between px-4 mb-4">
+      <View className="flex-row items-center justify-between mb-6">
         <Text className="text-title-md font-lufga-bold text-neutral-900">
           Fastest Near You
         </Text>

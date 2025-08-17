@@ -40,7 +40,7 @@ export const tabBarConfig: TabConfig[] = [
         label: 'Offer',
         icon: ({ focused, color, size }) => (
             <MaterialCommunityIcons
-                name={focused ? 'percent-circle' : 'percent-circle-outline'}
+                name={focused ? 'percent' : 'percent-outline'}
                 size={size}
                 color={color}
             />
