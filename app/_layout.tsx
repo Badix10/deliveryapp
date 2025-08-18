@@ -1,6 +1,7 @@
 import LoadingScreen from '@/components/common/LoadingScreen';
 import '@/global.css';
 import { useFontsLoading } from '@/hooks/useFontsLoading';
+import { initializeLocale } from '@/i18n';
 import { Session } from '@supabase/supabase-js';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -20,6 +21,11 @@ export default function RootLayout() {
 
   // Utiliser le hook unifié pour les fonts
   const { isReady: fontsReady } = useFontsLoading();
+
+  // Initialiser la localisation
+  useEffect(() => {
+    initializeLocale();
+  }, []);
 
   // Gestion de la session Supabase
   useEffect(() => {

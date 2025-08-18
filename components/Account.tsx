@@ -13,9 +13,12 @@ import {
     View
 } from 'react-native'
 import { supabase } from '../lib/supabase'
+import { useTranslation } from '../i18n'
 import Avatar from './Avatar'
+import LanguageSelector from './common/LanguageSelector'
 
 export default function Account({ session }: { session: Session }) {
+    const { t } = useTranslation()
     const [saving, setSaving] = useState(false)
     const [avatarUrl, setAvatarUrl] = useState('')
     const [usernameFocused, toggleUsernameFocus, setUsernameFocused] = useToggle(false)
@@ -38,10 +41,10 @@ export default function Account({ session }: { session: Session }) {
         validate: (values) => {
             const errors: any = {}
             if (values.username && values.username.length < 2) {
-                errors.username = 'Le nom d\'utilisateur doit contenir au moins 2 caractères'
+                errors.username = t('profile.usernameMinLength')
             }
             if (values.website && !values.website.startsWith('http')) {
-                errors.website = 'Le site web doit commencer par http:// ou https://'
+                errors.website = t('profile.websiteFormat')
             }
             return errors
         },
@@ -56,7 +59,7 @@ export default function Account({ session }: { session: Session }) {
 
     // Fonction pour charger le profil
     const fetchProfile = async () => {
-        if (!session?.user) throw new Error('No user on the session!')
+        if (!session?.user) throw new Error(t('profile.noUserSession'))
 
         const { data, error, status } = await supabase
             .from('profiles')
@@ -108,7 +111,7 @@ export default function Account({ session }: { session: Session }) {
     }) {
         try {
             setSaving(true)
-            if (!session?.user) throw new Error('No user on the session!')
+            if (!session?.user) throw new Error(t('profile.noUserSession'))
 
             const updates = {
                 id: session?.user.id,
@@ -124,10 +127,10 @@ export default function Account({ session }: { session: Session }) {
                 throw error
             }
 
-            Alert.alert('Succès', 'Profil mis à jour avec succès!')
+            Alert.alert(t('profile.success'), t('profile.profileUpdated'))
         } catch (error) {
             if (error instanceof Error) {
-                Alert.alert('Erreur', error.message)
+                Alert.alert(t('common.error'), error.message)
             }
         } finally {
             setSaving(false)
@@ -136,15 +139,15 @@ export default function Account({ session }: { session: Session }) {
 
     async function handleSignOut() {
         Alert.alert(
-            'Déconnexion',
-            'Êtes-vous sûr de vouloir vous déconnecter ?',
+            t('profile.signOutConfirmTitle'),
+            t('profile.signOutConfirmMessage'),
             [
                 {
-                    text: 'Annuler',
+                    text: t('common.cancel'),
                     style: 'cancel'
                 },
                 {
-                    text: 'Déconnexion',
+                    text: t('profile.signOut'),
                     onPress: async () => {
                         await supabase.auth.signOut()
                     },
@@ -158,7 +161,7 @@ export default function Account({ session }: { session: Session }) {
         return (
             <View className="flex-1 justify-center items-center bg-white">
                 <ActivityIndicator size="large" color="#2563EB" />
-                <Text className="mt-4 text-gray-600">Chargement du profil...</Text>
+                <Text className="mt-4 text-gray-600">{t('profile.loadingProfile')}</Text>
             </View>
         )
     }
@@ -180,7 +183,11 @@ export default function Account({ session }: { session: Session }) {
                             url={avatarUrl}
                             onUpload={(url: string) => {
                                 setAvatarUrl(url)
-                                updateProfile({ username, website, avatar_url: url })
+                                updateProfile({ 
+                                    username: profileForm.values.username, 
+                                    website: profileForm.values.website, 
+                                    avatar_url: url 
+                                })
                             }}
                         />
                     </View>
@@ -191,28 +198,28 @@ export default function Account({ session }: { session: Session }) {
                         <View className="w-24 h-24 bg-gray-200 rounded-full items-center justify-center mb-4">
                             <Text className="text-3xl">👤</Text>
                         </View>
-                        <Text className="text-2xl font-bold text-gray-900">Mon Profil</Text>
-                        <Text className="text-sm text-gray-500 mt-1">Gérez vos informations personnelles</Text>
+                        <Text className="text-2xl font-bold text-gray-900">{t('profile.title')}</Text>
+                        <Text className="text-sm text-gray-500 mt-1">{t('profile.managePersonalInfo')}</Text>
                     </View>
 
                     {/* Section informations */}
                     <View className="bg-gray-50 rounded-2xl p-4 mb-6">
                         <Text className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                            Informations du compte
+                            {t('profile.accountInfo')}
                         </Text>
 
                         {/* Champ Email (non éditable) */}
                         <View className="mb-4">
                             <Text className="text-sm font-medium text-gray-700 mb-2">
-                                Email
+                                {t('profile.email')}
                             </Text>
                             <View className="flex-row items-center border border-gray-200 rounded-lg px-4 py-3 bg-gray-100">
                                 <Text className="mr-3 text-gray-500">📧</Text>
                                 <Text className="flex-1 text-base text-gray-600">
-                                    {session?.user?.email || 'Non défini'}
+                                    {session?.user?.email || t('profile.notDefined')}
                                 </Text>
                                 <View className="bg-green-100 px-2 py-1 rounded">
-                                    <Text className="text-xs text-green-700">Vérifié</Text>
+                                    <Text className="text-xs text-green-700">{t('profile.verified')}</Text>
                                 </View>
                             </View>
                         </View>
@@ -220,14 +227,14 @@ export default function Account({ session }: { session: Session }) {
                         {/* Champ Username */}
                         <View className="mb-4">
                             <Text className="text-sm font-medium text-gray-700 mb-2">
-                                {"Nom d'utilisateur"}
+                                {t('profile.username')}
                             </Text>
                             <View className={`flex-row items-center border rounded-lg px-4 py-3 ${usernameFocused ? 'border-blue-500 bg-white' : 'border-gray-200 bg-white'
                                 }`}>
                                 <Text className="mr-3 text-gray-500">👤</Text>
                                 <TextInput
                                     className="flex-1 text-base text-gray-900"
-                                    placeholder="Entrez votre nom d'utilisateur"
+                                    placeholder={t('profile.enterUsername')}
                                     placeholderTextColor="#9CA3AF"
                                     value={profileForm.values.username}
                                     onChangeText={(value) => profileForm.setFieldValue('username', value)}
@@ -242,14 +249,14 @@ export default function Account({ session }: { session: Session }) {
                         {/* Champ Website */}
                         <View className="mb-2">
                             <Text className="text-sm font-medium text-gray-700 mb-2">
-                                Site web
+                                {t('profile.website')}
                             </Text>
                             <View className={`flex-row items-center border rounded-lg px-4 py-3 ${websiteFocused ? 'border-blue-500 bg-white' : 'border-gray-200 bg-white'
                                 }`}>
                                 <Text className="mr-3 text-gray-500">🌐</Text>
                                 <TextInput
                                     className="flex-1 text-base text-gray-900"
-                                    placeholder="https://votresite.com"
+                                    placeholder={t('profile.websitePlaceholder')}
                                     placeholderTextColor="#9CA3AF"
                                     value={profileForm.values.website}
                                     onChangeText={(value) => profileForm.setFieldValue('website', value)}
@@ -264,11 +271,18 @@ export default function Account({ session }: { session: Session }) {
                         </View>
                     </View>
 
+                    {/* Section Paramètres de langue */}
+                    <LanguageSelector />
+
                     {/* Boutons d'action */}
-                    <View className="space-y-3">
+                    <View className="space-y-3 mt-6">
                         {/* Bouton Mettre à jour */}
                         <TouchableOpacity
-                            onPress={() => updateProfile({ username, website, avatar_url: avatarUrl })}
+                            onPress={() => updateProfile({ 
+                                username: profileForm.values.username, 
+                                website: profileForm.values.website, 
+                                avatar_url: avatarUrl 
+                            })}
                             disabled={saving}
                             className={`rounded-lg py-4 mb-3 ${saving ? 'bg-blue-300' : 'bg-blue-600 active:bg-blue-700'
                                 }`}
@@ -278,12 +292,12 @@ export default function Account({ session }: { session: Session }) {
                                 <View className="flex-row justify-center items-center">
                                     <ActivityIndicator color="white" size="small" />
                                     <Text className="ml-2 text-white font-semibold text-base">
-                                        Enregistrement...
+                                        {t('profile.updating')}
                                     </Text>
                                 </View>
                             ) : (
                                 <Text className="text-center text-white font-semibold text-base">
-                                    Mettre à jour le profil
+                                    {t('profile.updateProfile')}
                                 </Text>
                             )}
                         </TouchableOpacity>
@@ -300,7 +314,7 @@ export default function Account({ session }: { session: Session }) {
                             activeOpacity={0.8}
                         >
                             <Text className="text-center text-red-600 font-semibold text-base">
-                                Se déconnecter
+                                {t('profile.signOut')}
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -308,10 +322,10 @@ export default function Account({ session }: { session: Session }) {
                     {/* Informations supplémentaires */}
                     <View className="mt-8 p-4 bg-blue-50 rounded-lg">
                         <Text className="text-sm text-blue-900 font-medium mb-1">
-                            💡 Astuce
+                            {t('profile.tip')}
                         </Text>
                         <Text className="text-xs text-blue-700">
-                            Gardez vos informations à jour pour une meilleure expérience de livraison
+                            {t('profile.tipMessage')}
                         </Text>
                     </View>
                 </View>

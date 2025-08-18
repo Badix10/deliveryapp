@@ -1,0 +1,20 @@
+{
+  "welcome": "Bienvenue",
+  "loading": "Chargement...",
+  "error": "Une erreur est survenue",
+  "retry": "Réessayer",
+  "cancel": "Annuler",
+  "confirm": "Confirmer",
+  "save": "Enregistrer",
+  "delete": "Supprimer",
+  "search": "Rechercher",
+  "filter": "Filtrer",
+  "yes": "Oui",
+  "no": "Non",
+  "close": "Fermer",
+  "back": "Retour",
+  "next": "Suivant",
+  "done": "Terminé",
+  "edit": "Modifier",
+  "share": "Partager"
+}

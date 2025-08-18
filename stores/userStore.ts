@@ -5,7 +5,7 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 
 // Types
 type Theme = 'light' | 'dark'
-type Language = 'ar' | 'fr' | 'en'
+type Language = 'ar' | 'fr'
 
 interface UserPreferences {
   theme: Theme
@@ -35,6 +35,9 @@ interface UserActions {
     key: K, 
     value: UserPreferences[K]
   ) => void
+  
+  // Language specific action for better integration with i18n
+  setLanguage: (language: Language) => void
   
   // Utility actions
   clearUserData: () => void
@@ -91,6 +94,10 @@ export const useUserStore = create<UserStore>()(
         value: UserPreferences[K]
       ) => set((state) => ({
         preferences: { ...state.preferences, [key]: value }
+      })),
+      
+      setLanguage: (language: Language) => set((state) => ({
+        preferences: { ...state.preferences, language }
       })),
       
       clearUserData: () => set({ 
