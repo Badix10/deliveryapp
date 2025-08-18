@@ -1,0 +1,22 @@
+{
+  "title": "سلة التسوق",
+  "subtitle": "العناصر المحددة",
+  "empty": "سلة التسوق فارغة",
+  "emptyMessage": "أضف عناصر من قائمتنا لبدء طلبك",
+  "addItems": "إضافة عناصر",
+  "items": "عناصر",
+  "item": "عنصر",
+  "subtotal": "المجموع الفرعي",
+  "delivery": "التوصيل",
+  "taxes": "الضرائب",
+  "total": "المجموع الكلي",
+  "checkout": "إتمام الطلب",
+  "removeItem": "إزالة العنصر",
+  "updateQuantity": "تعديل الكمية",
+  "quantity": "الكمية",
+  "price": "السعر",
+  "freeDelivery": "توصيل مجاني",
+  "deliveryFee": "رسوم التوصيل",
+  "estimatedTime": "الوقت المقدر",
+  "minutes": "دقيقة"
+}

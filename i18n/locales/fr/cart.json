@@ -1,0 +1,22 @@
+{
+  "title": "Mon Panier",
+  "subtitle": "Vos articles sélectionnés",
+  "empty": "Votre panier est vide",
+  "emptyMessage": "Ajoutez des articles depuis notre menu pour commencer votre commande",
+  "addItems": "Ajouter des articles",
+  "items": "articles",
+  "item": "article",
+  "subtotal": "Sous-total",
+  "delivery": "Livraison",
+  "taxes": "Taxes",
+  "total": "Total",
+  "checkout": "Passer la commande",
+  "removeItem": "Supprimer l'article",
+  "updateQuantity": "Modifier la quantité",
+  "quantity": "Quantité",
+  "price": "Prix",
+  "freeDelivery": "Livraison gratuite",
+  "deliveryFee": "Frais de livraison",
+  "estimatedTime": "Temps estimé",
+  "minutes": "min"
+}

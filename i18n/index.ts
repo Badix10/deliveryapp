@@ -7,12 +7,18 @@ import { I18nManager } from 'react-native';
 
 // Import des traductions
 import frAuth from './locales/fr/auth.json';
+import frCart from './locales/fr/cart.json';
 import frCommon from './locales/fr/common.json';
+import frOffers from './locales/fr/offers.json';
+import frOrder from './locales/fr/order.json';
 import frProfile from './locales/fr/profile.json';
 import frSettings from './locales/fr/settings.json';
 
 import arAuth from './locales/ar/auth.json';
+import arCart from './locales/ar/cart.json';
 import arCommon from './locales/ar/common.json';
+import arOffers from './locales/ar/offers.json';
+import arOrder from './locales/ar/order.json';
 import arProfile from './locales/ar/profile.json';
 import arSettings from './locales/ar/settings.json';
 
@@ -23,12 +29,18 @@ const translations = {
     auth: frAuth,
     profile: frProfile,
     settings: frSettings,
+    cart: frCart,
+    offers: frOffers,
+    order: frOrder,
   },
   ar: {
     common: arCommon,
     auth: arAuth,
     profile: arProfile,
     settings: arSettings,
+    cart: arCart,
+    offers: arOffers,
+    order: arOrder,
   },
 }
 
@@ -43,6 +55,9 @@ export type TranslationKeys =
   | `auth.${keyof typeof frAuth}`
   | `profile.${keyof typeof frProfile}`
   | `settings.${keyof typeof frSettings}`
+  | `cart.${keyof typeof frCart}`
+  | `offers.${keyof typeof frOffers}`
+  | `order.${keyof typeof frOrder}`
 
 export const initializeLocale = () => {
   const storedLanguage = useUserStore.getState().preferences?.language
