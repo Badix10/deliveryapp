@@ -53,16 +53,26 @@ const i18n = new I18n(translations)
 i18n.enableFallback = true
 i18n.defaultLocale = 'ar' // Fallback sur arabe comme demandé
 
-// Type pour les clés de traduction
+// Type pour les clés de traduction (récursif pour objets imbriqués)
+type DeepKeys<T> = T extends object
+  ? {
+      [K in keyof T]: K extends string
+        ? T[K] extends object
+          ? `${K}.${DeepKeys<T[K]>}`
+          : K
+        : never
+    }[keyof T]
+  : never
+
 export type TranslationKeys = 
-  | `common.${keyof typeof frCommon}`
+  | `common.${DeepKeys<typeof frCommon>}`
   | `auth.${keyof typeof frAuth}`
   | `profile.${keyof typeof frProfile}`
   | `settings.${keyof typeof frSettings}`
   | `cart.${keyof typeof frCart}`
   | `offers.${keyof typeof frOffers}`
   | `order.${keyof typeof frOrder}`
-  | `home.${keyof typeof frHome}`
+  | `home.${DeepKeys<typeof frHome>}`
 
 export const initializeLocale = () => {
   const storedLanguage = useUserStore.getState().preferences?.language

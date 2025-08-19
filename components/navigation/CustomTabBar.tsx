@@ -1,13 +1,20 @@
+import { useUserStore } from '@/stores/userStore';
 import { usePathname } from 'expo-router';
 import React from 'react';
 import { Platform, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { tabBarConfig } from './tabBarConfig';
+import { getTabBarConfig } from './tabBarConfig';
 import TabBarItem from './TabBarItem';
 
 export default function CustomTabBar() {
   const insets = useSafeAreaInsets();
   const pathname = usePathname();
+  
+  // Écouter les changements de langue pour rendre la TabBar réactive
+  const language = useUserStore((state) => state.preferences?.language);
+  
+  // Obtenir la config avec les traductions actuelles (réactive au changement de langue)
+  const tabBarConfig = React.useMemo(() => getTabBarConfig(), [language]);
   
   // Déterminer l'onglet actif basé sur le pathname
   const activeTab = pathname.split('/')[1] || 'index';

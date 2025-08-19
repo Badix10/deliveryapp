@@ -1,3 +1,4 @@
+import { t } from '@/i18n';
 import {
     Feather,
     Ionicons,
@@ -12,10 +13,10 @@ export interface TabConfig {
     badge?: string | number;
 }
 
-export const tabBarConfig: TabConfig[] = [
+export const getTabBarConfig = (): TabConfig[] => [
     {
         name: '', // index route
-        label: 'Home',
+        label: t('common.navigation.home'),
         icon: ({ focused, color, size }) => (
             <Ionicons
                 name={focused ? 'home' : 'home-outline'}
@@ -26,7 +27,7 @@ export const tabBarConfig: TabConfig[] = [
     },
     {
         name: 'order',
-        label: 'Order',
+        label: t('common.navigation.order'),
         icon: ({ focused, color, size }) => (
             <Ionicons
                 name={focused ? 'bag-handle' : 'bag-handle-outline'}
@@ -37,7 +38,7 @@ export const tabBarConfig: TabConfig[] = [
     },
     {
         name: 'offers',
-        label: 'Offer',
+        label: t('common.navigation.offers'),
         icon: ({ focused, color, size }) => (
             <MaterialCommunityIcons
                 name={focused ? 'percent' : 'percent-outline'}
@@ -48,7 +49,7 @@ export const tabBarConfig: TabConfig[] = [
     },
     {
         name: 'cart',
-        label: 'Chart',
+        label: t('common.navigation.cart'),
         icon: ({ focused, color, size }) => (
             <Ionicons
                 name={focused ? 'heart' : 'heart-outline'}
@@ -60,7 +61,7 @@ export const tabBarConfig: TabConfig[] = [
     },
     {
         name: 'profile',
-        label: 'Profile',
+        label: t('common.navigation.profile'),
         icon: ({ focused, color, size }) => (
             <Feather
                 name="user"

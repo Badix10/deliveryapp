@@ -25,5 +25,12 @@
   "categories": "Catégories",
   "filters": "Filtres",
   "reset": "Réinitialiser",
-  "apply": "Appliquer"
+  "apply": "Appliquer",
+  "navigation": {
+    "home": "Accueil",
+    "order": "Commande",
+    "offers": "Offres",
+    "cart": "Panier",
+    "profile": "Profil"
+  }
 }
