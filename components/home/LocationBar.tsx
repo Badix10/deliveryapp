@@ -1,3 +1,4 @@
+import { t } from '@/i18n';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Href, router } from 'expo-router';
 import React from 'react';
@@ -35,7 +36,7 @@ export default function LocationBar() {
         
         <View className="flex-1">
           <Text className="text-caption text-neutral-400 font-lufga">
-            Location
+            {t('home.header.location')}
           </Text>
           <Text className="text-body-xs text-white font-lufga-medium" numberOfLines={1}>
             {currentLocation.address}

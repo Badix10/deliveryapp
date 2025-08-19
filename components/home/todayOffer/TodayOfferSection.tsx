@@ -1,4 +1,5 @@
 // ========== components/home/TodaysOfferSection.tsx ==========
+import { t } from '@/i18n';
 import { mockOffers } from '@/mock/mockDataHomePage';
 import { router } from 'expo-router';
 import React from 'react';
@@ -21,12 +22,12 @@ export default function TodaysOfferSection() {
       {/* Section Header */}
       <View className="flex-row items-center justify-between mb-6">
         <Text className="text-title-md font-lufga-bold text-neutral-900">
-          Today&apos;s Offer!
+          {t('home.todaysOffer.title')}
         </Text>
         
         <Pressable onPress={handleSeeAll}>
           <Text className="text-body-sm font-lufga-medium text-neutral-500">
-            See All
+            {t('home.todaysOffer.seeAll')}
           </Text>
         </Pressable>
       </View>

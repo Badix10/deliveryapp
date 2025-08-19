@@ -1,3 +1,4 @@
+import { t } from '@/i18n';
 import { mockCategories } from '@/mock/mockCategory';
 import { useAuthStore } from '@/stores/authStore';
 import { useCategoriesStore } from '@/stores/categoriesStore';
@@ -57,7 +58,7 @@ export default function FoodCategories() {
     return (
       <View className="py-4 px-4">
         <Text className="text-error-DEFAULT font-lufga text-body-sm">
-          Impossible de charger les catégories
+          {t('home.categories.loadError')}
         </Text>
       </View>
     );
@@ -90,7 +91,7 @@ export default function FoodCategories() {
             {error === 'Using offline data' && (
               <View className="mr-3 bg-warning-light/30 px-3 py-2 rounded-lg">
                 <Text className="text-caption text-neutral-600 font-lufga">
-                  Mode hors ligne
+                  {t('home.categories.offlineMode')}
                 </Text>
               </View>
             )}

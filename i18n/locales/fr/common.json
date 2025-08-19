@@ -16,5 +16,14 @@
   "next": "Suivant",
   "done": "Terminé",
   "edit": "Modifier",
-  "share": "Partager"
+  "share": "Partager",
+  "seeAll": "Voir Tout",
+  "location": "Position",
+  "distance": "Distance",
+  "rating": "Note",
+  "km": "km",
+  "categories": "Catégories",
+  "filters": "Filtres",
+  "reset": "Réinitialiser",
+  "apply": "Appliquer"
 }

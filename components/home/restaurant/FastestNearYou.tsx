@@ -1,4 +1,5 @@
 // ========== components/home/FastestNearYou.tsx ==========
+import { t } from '@/i18n';
 import { useRestaurantsStore } from '@/stores/restaurantsStore';
 import { router } from 'expo-router';
 import React, { useEffect } from 'react';
@@ -47,12 +48,12 @@ export default function FastestNearYou() {
       {/* Section Header */}
       <View className="flex-row items-center justify-between mb-6">
         <Text className="text-title-md font-lufga-bold text-neutral-900">
-          Fastest Near You
+          {t('home.fastestNearYou.title')}
         </Text>
         
         <Pressable onPress={handleSeeAll}>
           <Text className="text-body-sm font-lufga-medium text-neutral-500">
-            See All
+            {t('home.fastestNearYou.seeAll')}
           </Text>
         </Pressable>
       </View>
@@ -70,7 +71,7 @@ export default function FastestNearYou() {
       {error === 'Using offline data' && (
         <View className="mx-4 mb-2 bg-warning-light/20 px-3 py-2 rounded-lg">
           <Text className="text-caption text-neutral-600 font-lufga">
-            📡 Mode hors ligne - Données en cache
+            📡 {t('home.fastestNearYou.offlineMode')}
           </Text>
         </View>
       )}
@@ -114,7 +115,7 @@ export default function FastestNearYou() {
         ) : (
           <View className="py-16 px-20">
             <Text className="text-body text-neutral-500 font-lufga text-center">
-              Aucun restaurant à proximité
+              {t('home.fastestNearYou.noRestaurants')}
             </Text>
           </View>
         )}

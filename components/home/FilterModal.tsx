@@ -1,4 +1,5 @@
 // ========== components/home/FilterModal.tsx ==========
+import { t } from '@/i18n';
 import { mockFoodCategories } from '@/mock/mockDataHomePage';
 import { Ionicons } from '@expo/vector-icons';
 // import Slider from '@react-native-community/slider';
@@ -74,7 +75,7 @@ export default function FilterModal({ visible, onClose, onApply }: FilterModalPr
           {/* Header */}
           <View className="flex-row items-center justify-between p-4 border-b border-neutral-200">
             <Text className="text-title-md font-lufga-bold text-neutral-900">
-              Filters
+              {t('common.filters')}
             </Text>
             <Pressable onPress={onClose}>
               <Ionicons name="close" size={24} color="#1A1A1A" />
@@ -85,7 +86,7 @@ export default function FilterModal({ visible, onClose, onApply }: FilterModalPr
             {/* Categories */}
             <View className="py-4">
               <Text className="text-body font-lufga-semibold text-neutral-900 mb-3">
-                Categories
+                {t('common.categories')}
               </Text>
               <View className="flex-row flex-wrap">
                 {mockFoodCategories.map((category) => (
@@ -118,7 +119,7 @@ export default function FilterModal({ visible, onClose, onApply }: FilterModalPr
             {/* Price Range */}
             <View className="py-4 border-t border-neutral-100">
               <Text className="text-body font-lufga-semibold text-neutral-900 mb-3">
-                Price Range
+                {t('home.filters.priceRange')}
               </Text>
               <View className="flex-row justify-between mb-2">
                 <Text className="text-body-sm text-neutral-600 font-lufga">
@@ -145,7 +146,7 @@ export default function FilterModal({ visible, onClose, onApply }: FilterModalPr
             {/* Distance */}
             <View className="py-4 border-t border-neutral-100">
               <Text className="text-body font-lufga-semibold text-neutral-900 mb-3">
-                Distance Maximum
+                {t('home.filters.maxDistance')}
               </Text>
               <View className="flex-row justify-between mb-2">
                 <Text className="text-body-sm text-neutral-600 font-lufga">
@@ -168,7 +169,7 @@ export default function FilterModal({ visible, onClose, onApply }: FilterModalPr
             {/* Rating */}
             <View className="py-4 border-t border-neutral-100">
               <Text className="text-body font-lufga-semibold text-neutral-900 mb-3">
-                Minimum Rating
+                {t('home.filters.minimumRating')}
               </Text>
               <View className="flex-row">
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -194,7 +195,7 @@ export default function FilterModal({ visible, onClose, onApply }: FilterModalPr
                 className="flex-row items-center justify-between"
               >
                 <Text className="text-body font-lufga-semibold text-neutral-900">
-                  Free Delivery Only
+                  {t('home.filters.freeDeliveryOnlyToggle')}
                 </Text>
                 <View
                   className={`w-12 h-6 rounded-full ${
@@ -217,7 +218,7 @@ export default function FilterModal({ visible, onClose, onApply }: FilterModalPr
                 className="flex-1 mr-2 py-3 border border-neutral-300 rounded-button"
               >
                 <Text className="text-center text-neutral-700 font-lufga-semibold text-body">
-                  Reset
+                  {t('home.filters.reset')}
                 </Text>
               </TouchableOpacity>
               
@@ -226,7 +227,7 @@ export default function FilterModal({ visible, onClose, onApply }: FilterModalPr
                 className="flex-1 ml-2 py-3 bg-primary-600 rounded-button"
               >
                 <Text className="text-center text-white font-lufga-semibold text-body">
-                  Apply Filters
+                  {t('home.filters.applyFilters')}
                 </Text>
               </TouchableOpacity>
             </View>

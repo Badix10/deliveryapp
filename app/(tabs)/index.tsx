@@ -1,6 +1,7 @@
 import FoodCategories from '@/components/home/category/FoodCategories';
 import FastestNearYou from '@/components/home/restaurant/FastestNearYou';
 import TodaysOfferSection from '@/components/home/todayOffer/TodayOfferSection';
+import { t } from '@/i18n';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
@@ -33,24 +34,24 @@ export default function HomeScreen() {
           {activeFilters && (
             <View className="mb-6 p-4 bg-primary-50 rounded-xl border border-primary-100">
               <Text className="text-body-sm font-lufga-semibold text-primary-800 mb-2">
-                🔍 Filtres actifs
+                🔍 {t('home.filters.activeFilters')}
               </Text>
               {activeFilters.categories.length > 0 && (
                 <Text className="text-caption text-primary-700 font-lufga mb-1">
-                  📂 Catégories: {activeFilters.categories.join(', ')}
+                  📂 {t('common.categories')}: {activeFilters.categories.join(', ')}
                 </Text>
               )}
               {activeFilters.freeDelivery && (
                 <Text className="text-caption text-primary-700 font-lufga mb-1">
-                  🚚 Livraison gratuite uniquement
+                  🚚 {t('home.filters.freeDeliveryOnly')}
                 </Text>
               )}
               <Text className="text-caption text-primary-700 font-lufga mb-1">
-                📍 Distance max: {activeFilters.distance} km
+                📍 {t('home.filters.maxDistance')}: {activeFilters.distance} {t('common.km')}
               </Text>
               {activeFilters.rating > 0 && (
                 <Text className="text-caption text-primary-700 font-lufga">
-                  ⭐ Note min: {activeFilters.rating}
+                  ⭐ {t('home.filters.minRating')}: {activeFilters.rating}
                 </Text>
               )}
             </View>

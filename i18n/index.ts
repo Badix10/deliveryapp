@@ -9,6 +9,7 @@ import { I18nManager } from 'react-native';
 import frAuth from './locales/fr/auth.json';
 import frCart from './locales/fr/cart.json';
 import frCommon from './locales/fr/common.json';
+import frHome from './locales/fr/home.json';
 import frOffers from './locales/fr/offers.json';
 import frOrder from './locales/fr/order.json';
 import frProfile from './locales/fr/profile.json';
@@ -17,6 +18,7 @@ import frSettings from './locales/fr/settings.json';
 import arAuth from './locales/ar/auth.json';
 import arCart from './locales/ar/cart.json';
 import arCommon from './locales/ar/common.json';
+import arHome from './locales/ar/home.json';
 import arOffers from './locales/ar/offers.json';
 import arOrder from './locales/ar/order.json';
 import arProfile from './locales/ar/profile.json';
@@ -32,6 +34,7 @@ const translations = {
     cart: frCart,
     offers: frOffers,
     order: frOrder,
+    home: frHome,
   },
   ar: {
     common: arCommon,
@@ -41,6 +44,7 @@ const translations = {
     cart: arCart,
     offers: arOffers,
     order: arOrder,
+    home: arHome,
   },
 }
 
@@ -58,6 +62,7 @@ export type TranslationKeys =
   | `cart.${keyof typeof frCart}`
   | `offers.${keyof typeof frOffers}`
   | `order.${keyof typeof frOrder}`
+  | `home.${keyof typeof frHome}`
 
 export const initializeLocale = () => {
   const storedLanguage = useUserStore.getState().preferences?.language

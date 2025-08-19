@@ -1,3 +1,4 @@
+import { t } from '@/i18n';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React from 'react';
@@ -21,9 +22,9 @@ interface OfferCardProps {
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 export default function OfferCard({
-  title = 'Free Delivery',
-  description = 'Enjoy exclusive discounts on tasty food today!',
-  buttonText = 'Order Now',
+  title = t('home.todaysOffer.cardTitle'),
+  description = t('home.todaysOffer.cardDescription'),
+  buttonText = t('home.todaysOffer.cardButton'),
   onPress,
   discount = 'FREE',
   code = 'FREEDEL',
@@ -95,7 +96,7 @@ export default function OfferCard({
             {code && (
               <View className="bg-white/60 self-start px-3 py-1 rounded-md mb-3">
                 <Text className="text-caption font-lufga-medium text-primary-700">
-                  Code: {code}
+                  {t('home.todaysOffer.code')}: {code}
                 </Text>
               </View>
             )}

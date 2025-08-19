@@ -1,0 +1,43 @@
+{
+  "header": {
+    "title": "ماذا ستتناول\nاليوم؟",
+    "location": "الموقع",
+    "searchPlaceholder": "البحث عن مطاعم، أطعمة...",
+    "filter": "تصفية"
+  },
+  "filters": {
+    "activeFilters": "المرشحات النشطة",
+    "categories": "الفئات",
+    "freeDeliveryOnly": "التوصيل المجاني فقط",
+    "maxDistance": "أقصى مسافة",
+    "minRating": "أدنى تقييم",
+    "priceRange": "نطاق السعر",
+    "maxDistance": "أقصى مسافة",
+    "minimumRating": "أدنى تقييم",
+    "freeDeliveryOnlyToggle": "التوصيل المجاني فقط",
+    "reset": "إعادة تعيين",
+    "applyFilters": "تطبيق المرشحات"
+  },
+  "todaysOffer": {
+    "title": "عرض اليوم!",
+    "seeAll": "عرض الكل",
+    "cardTitle": "التوصيل المجاني",
+    "cardDescription": "استمتع بخصومات حصرية على الطعام اللذيذ اليوم!",
+    "cardButton": "اطلب الآن",
+    "code": "الكود"
+  },
+  "fastestNearYou": {
+    "title": "الأسرع بالقرب منك",
+    "seeAll": "عرض الكل",
+    "offlineMode": "الوضع دون اتصال - البيانات المحفوظة",
+    "noRestaurants": "لا توجد مطاعم قريبة"
+  },
+  "categories": {
+    "loadError": "تعذر تحميل الفئات",
+    "offlineMode": "الوضع دون اتصال"
+  },
+  "error": {
+    "loadingCategories": "تعذر تحميل الفئات",
+    "loadingRestaurants": "خطأ في تحميل المطاعم"
+  }
+}

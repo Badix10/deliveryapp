@@ -1,4 +1,5 @@
 import { useLocalStorage, useSearch } from '@/hooks';
+import { t } from '@/i18n';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
@@ -59,7 +60,7 @@ export default function SearchSection({ onFilterPress }: SearchSectionProps) {
           <TextInput
             value={query}
             onChangeText={setQuery}
-            placeholder="Search restaurants, food..."
+            placeholder={t('home.header.searchPlaceholder')}
             placeholderTextColor="#6B7280"
             className="flex-1 ml-3 text-body-sm text-neutral-900 font-lufga"
             returnKeyType="search"
@@ -73,7 +74,7 @@ export default function SearchSection({ onFilterPress }: SearchSectionProps) {
           className="bg-secondary-500 flex-row items-center px-4 py-3 rounded-full mr-1.5"
         >
           <Text className="text-neutral-900 font-lufga-medium text-body-sm mr-2">
-            Filter
+            {t('home.header.filter')}
           </Text>
           <MaterialCommunityIcons name="tune-variant" size={18} color="#1A1A1A" />
         </Pressable>

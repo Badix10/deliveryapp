@@ -1,0 +1,43 @@
+{
+  "header": {
+    "title": "Qu'allez-vous\nmanger aujourd'hui ?",
+    "location": "Position",
+    "searchPlaceholder": "Rechercher restaurants, plats...",
+    "filter": "Filtrer"
+  },
+  "filters": {
+    "activeFilters": "Filtres actifs",
+    "categories": "Catégories",
+    "freeDeliveryOnly": "Livraison gratuite uniquement",
+    "maxDistance": "Distance max",
+    "minRating": "Note min",
+    "priceRange": "Gamme de prix",
+    "maxDistance": "Distance Maximum",
+    "minimumRating": "Note Minimum",
+    "freeDeliveryOnlyToggle": "Livraison Gratuite Uniquement",
+    "reset": "Réinitialiser",
+    "applyFilters": "Appliquer les Filtres"
+  },
+  "todaysOffer": {
+    "title": "Offre du Jour !",
+    "seeAll": "Voir Tout",
+    "cardTitle": "Livraison Gratuite",
+    "cardDescription": "Profitez de remises exclusives sur de délicieux plats aujourd'hui !",
+    "cardButton": "Commander Maintenant",
+    "code": "Code"
+  },
+  "fastestNearYou": {
+    "title": "Plus Rapides Près de Vous",
+    "seeAll": "Voir Tout",
+    "offlineMode": "Mode hors ligne - Données en cache",
+    "noRestaurants": "Aucun restaurant à proximité"
+  },
+  "categories": {
+    "loadError": "Impossible de charger les catégories",
+    "offlineMode": "Mode hors ligne"
+  },
+  "error": {
+    "loadingCategories": "Impossible de charger les catégories",
+    "loadingRestaurants": "Erreur lors du chargement des restaurants"
+  }
+}
